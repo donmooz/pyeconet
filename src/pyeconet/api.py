@@ -98,7 +98,7 @@ class EcoNetApiInterface:
                 if (value != enumtext.index(status)):
                     _LOGGER.debug("Enum value mismatch: "
                                   f"{enumtext[value]} != "
-                                  f"{equip["@MODE"]['status']}")
+                                  f"{equip['@MODE']['status']}")
                     equip["@MODE"]['value'] = enumtext.index(status)
         return equip, enumtext
 
@@ -225,7 +225,9 @@ class EcoNetApiInterface:
             ) as resp:
                 if resp.status == 200:
                     _json = await resp.json()
-                    _LOGGER.debug(json.dumps(_json, indent=2))
+                    with open("c:\dump\econetUserData.json", "w") as text_file:
+                        json.dump(_json, text_file, indent=2)
+                    #_LOGGER.debug(json.dumps(_json, indent=2))
                     if _json.get("success"):
                         self._locations = _json["results"]["locations"]
                         return self._locations
