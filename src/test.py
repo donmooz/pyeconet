@@ -39,10 +39,10 @@ async def main():
         """Handle a push update."""
         print("Updated published")
 
-    for _eqip in equipment[EquipmentType.THERMOSTAT]:
+    for _eqip in equip_list:
         _eqip.set_update_callback(update_published)
 
-    await asyncio.sleep(300000)
+    await asyncio.sleep(600000)
 
     api.unsubscribe()
 
