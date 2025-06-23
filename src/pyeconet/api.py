@@ -186,6 +186,8 @@ class EcoNetApiInterface:
                     _equip_obj = Thermostat(_equip, self)
                     self._equipment[_equip_obj.serial_number] = _equip_obj
                     for zoning_device in _equip.get("zoning_devices", []):
+                        #Zoning device is missing @RUNNINGSTATUS. Will need that later as updates come in.
+                        zoning_device["@RUNNINGSTATUS"] = "Zoning Device Awaiting Update"
                         _equip_obj = Thermostat(zoning_device, self)
                         self._equipment[_equip_obj.serial_number] = _equip_obj
 
